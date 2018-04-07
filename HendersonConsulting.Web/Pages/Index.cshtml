@@ -1,0 +1,77 @@
+﻿@page
+@model HendersonConsulting.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Henderson Consulting";
+}
+
+
+<markdown content="@Model.PageContent" /> 
+
+
+
+@section aside{
+
+    <div>
+        <a href="http://www.linkedin.com/in/mohenderson">
+            <img src="http://www.linkedin.com/img/webpromo/btn_myprofile_160x33.png" width="160" height="33" border="0" alt="View Michael Henderson's profile on LinkedIn">
+        </a>
+        <br /><br />
+    </div>
+    <div>
+        <iframe id="twitter-widget-0"
+                scrolling="no"
+                frameborder="0"
+                allowtransparency="true"
+                class="twitter-follow-button twitter-follow-button-rendered"
+                title="Twitter Follow Button"
+                src="https://platform.twitter.com/widgets/follow_button.2e798283373a8137c24e277b9b9620d6.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=mhenderson442&amp;show_count=false&amp;show_screen_name=true&amp;size=m&amp;time=1520807015439"
+                style="position: static;
+                visibility: visible;
+                width: 157px;
+                height: 20px;"
+                data-screen-name="mhenderson442"></iframe>
+        <br /><br />
+    </div>
+
+    <button id="blog-post-index-toggle"
+            class="btn btn-primary"
+            type="button"
+            data-toggle="collapse"
+            data-target="#blog-post-index"
+            aria-expanded="false"
+            aria-controls="blog-post-index">
+        Post Index
+    </button>
+    
+    <div id="blog-post-index" class="collapse multi-collapse">
+        <ul id="blog-post-index-list" class="list-group">
+            @foreach (var year in Model.Posts)
+            {
+                <li class="list-group-item">@year.Year</li>
+
+                @foreach (var month in year.Months)
+                {
+                    <li class="list-group-item">
+                        <a class="av-link dropdown-toggle"
+                           href="#"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            @month.Month
+                        </a>
+                        <div class="dropdown-menu">
+                            @foreach (var day in month.BlogPostDayList)
+                            {
+                                <a class="dropdown-item" href="#">@day.Day</a>
+                                @foreach (var post in day.BlogPostList)
+                                {
+                                    <a class="dropdown-item" href="#">@post.Name</a>
+                                }
+                            }
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+} 

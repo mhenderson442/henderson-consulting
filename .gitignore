@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs
+/HendersonConsulting.Web/bin
+/HendersonConsulting.Web/bower_components/bootstrap-material-design
+/HendersonConsulting.Web/obj
+/HendersonConsulting.Web/node_modules
+/HendersonConsulting.Web.Tests/bin/Debug/netcoreapp2.0
+/HendersonConsulting.Web.Tests/obj
