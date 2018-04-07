@@ -4,10 +4,7 @@
     ViewData["Title"] = "Henderson Consulting";
 }
 
-
 <markdown content="@Model.PageContent" /> 
-
-
 
 @section aside{
 
@@ -31,47 +28,5 @@
                 height: 20px;"
                 data-screen-name="mhenderson442"></iframe>
         <br /><br />
-    </div>
-
-    <button id="blog-post-index-toggle"
-            class="btn btn-primary"
-            type="button"
-            data-toggle="collapse"
-            data-target="#blog-post-index"
-            aria-expanded="false"
-            aria-controls="blog-post-index">
-        Post Index
-    </button>
-    
-    <div id="blog-post-index" class="collapse multi-collapse">
-        <ul id="blog-post-index-list" class="list-group">
-            @foreach (var year in Model.Posts)
-            {
-                <li class="list-group-item">@year.Year</li>
-
-                @foreach (var month in year.Months)
-                {
-                    <li class="list-group-item">
-                        <a class="av-link dropdown-toggle"
-                           href="#"
-                           data-toggle="dropdown"
-                           aria-haspopup="true"
-                           aria-expanded="false">
-                            @month.Month
-                        </a>
-                        <div class="dropdown-menu">
-                            @foreach (var day in month.BlogPostDayList)
-                            {
-                                <a class="dropdown-item" href="#">@day.Day</a>
-                                @foreach (var post in day.BlogPostList)
-                                {
-                                    <a class="dropdown-item" href="#">@post.Name</a>
-                                }
-                            }
-                        </div>
-                    </li>
-                }
-            }
-        </ul>
-    </div>
+    </div> 
 } 

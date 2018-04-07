@@ -11,11 +11,7 @@ namespace HendersonConsulting.Web.Pages
     {
         private readonly IStorageRepository _storageRepository;
         
-        public List<BlogPostYear> Posts { get; set; }
-
         public string PageContent { get; set; }
-
-        public string Title { get; set; }
 
         public IndexModel(IStorageRepository storageRepository)
         {
@@ -24,11 +20,7 @@ namespace HendersonConsulting.Web.Pages
 
         public async Task OnGetAsync()
         {
-            Posts = await _storageRepository.GetBlogPostListAsync();
-
             var blogPostContent = await _storageRepository.GetDefaultPostItemAsync();
-
-            Title = blogPostContent.Title;
             PageContent = blogPostContent.PageContent;
         }
     }
