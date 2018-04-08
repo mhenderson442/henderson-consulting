@@ -10,8 +10,6 @@ namespace HendersonConsulting.Web.Models
 
         public string MonthName { get; set; }
 
-
-
         public List<BlogPostDay> BlogPostDayList { get; set; }
     }
 }

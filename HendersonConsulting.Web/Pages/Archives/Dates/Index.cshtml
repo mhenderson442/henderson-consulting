@@ -21,14 +21,14 @@
                             <dl>
                             @foreach(var day in month.BlogPostDayList.OrderBy(x => x.DayName))
                             {
-                                <dt>@day.DayName</dt>
+                                <dt>@day.DayName.Replace("_"," ")</dt>
                                 @foreach(var post in day.BlogPostList.OrderBy(x => x.Name))
                                 {
                                     var parms = new Dictionary<string, string>
                                     {
                                         { "year", year.Year.ToString() },
-                                        { "month", month.Month.ToString() },
-                                        { "day", day.Day.ToString() },
+                                        { "month", month.Month.ToString("D2") },
+                                        { "day", day.Day.ToString("D2") },
                                         { "name", post.Name }
                                     };
 

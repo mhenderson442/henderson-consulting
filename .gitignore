@@ -9,3 +9,4 @@
 /HendersonConsulting.Web/node_modules
 /HendersonConsulting.Web.Tests/bin/Debug/netcoreapp2.0
 /HendersonConsulting.Web.Tests/obj
+/HendersonConsulting.Web.Tests/RespositoryTests
