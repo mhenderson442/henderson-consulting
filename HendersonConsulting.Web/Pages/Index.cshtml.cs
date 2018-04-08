@@ -1,8 +1,5 @@
-﻿using HendersonConsulting.Web.Models;
-using HendersonConsulting.Web.Repositories;
+﻿using HendersonConsulting.Web.Repositories;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace HendersonConsulting.Web.Pages

@@ -5,4 +5,43 @@
 }
 
 <h1>Archives By Dates</h1>
-<p>New content forthcoming.</p>
+<div class="container">
+@foreach (var year in Model.Posts)
+{
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">@year.Year</div>
+                <div class="card-body">
+                    @foreach(var month in year.Months.OrderBy(x => x.Month))
+                    {
+                    <div class="card">
+                        <div class="card-header">@month.MonthName</div>
+                        <div class="card-body">
+                            <dl>
+                            @foreach(var day in month.BlogPostDayList.OrderBy(x => x.DayName))
+                            {
+                                <dt>@day.DayName</dt>
+                                @foreach(var post in day.BlogPostList.OrderBy(x => x.Name))
+                                {
+                                    var parms = new Dictionary<string, string>
+                                    {
+                                        { "year", year.Year.ToString() },
+                                        { "month", month.Month.ToString() },
+                                        { "day", day.Day.ToString() },
+                                        { "name", post.Name }
+                                    };
+
+                                    <dd><a asp-page="/Post" asp-all-route-data="parms" >@post.Name</a></dd>
+                                }
+                            }
+                            </dl>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>        
+    </div>
+}
+</div>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using HendersonConsulting.Web.Models;
 using Microsoft.Extensions.Options;
@@ -40,7 +41,7 @@ namespace HendersonConsulting.Web.Repositories
                 .Select(x => new BlogPostItem
                 {
                     Prefix = x.Parent.Prefix,
-                    Name = x.Name.Replace(x.Parent.Prefix, "")
+                    Name = FormatName(x.Name, x.Parent.Prefix)
                 })
                 .ToList();
 
@@ -58,7 +59,8 @@ namespace HendersonConsulting.Web.Repositories
                 .Select(x => new BlogPostDay
                 {
                     Prefix = x.Parent.Prefix,
-                    Day = x.Name.Substring(8, 2),
+                    Day = ConvertStringToInt(x.Name.Substring(8, 2)),
+                    DayName = x.Name.Substring(8, 2),
                     BlogPostList = posts.Where(y => y.Prefix == x.Parent.Prefix).ToList()
                 })
                 .ToList();
@@ -77,7 +79,8 @@ namespace HendersonConsulting.Web.Repositories
                 .Select(x => new BlogPostMonth
                 {
                     Prefix = x.Parent.Parent.Prefix,
-                    Month = GetMonthLong(x.Name.Substring(5, 2)),
+                    Month = ConvertStringToInt(x.Name.Substring(5, 2)),
+                    MonthName = GetMonthLong(x.Name.Substring(5, 2)),
                     BlogPostDayList = days.Where(y => y.Prefix == x.Parent.Prefix).ToList()
                 })
                 .ToList();
@@ -140,9 +143,10 @@ namespace HendersonConsulting.Web.Repositories
                 .Select(x => new BlogPostYear
                 {
                     Prefix = x.Parent.Parent.Parent.Prefix,
-                    Year = x.Name.Substring(0, 4),
+                    Year = ConvertStringToInt(x.Name.Substring(0, 4)),
                     Months = months.Where(y => y.Prefix.Substring(0, 5) == x.Parent.Parent.Parent.Prefix).ToList()
                 })
+                .OrderByDescending(x => x.Year)
                 .ToList();
 
             return await Task.Run(() => years);
@@ -188,6 +192,27 @@ namespace HendersonConsulting.Web.Repositories
             var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
 
             return cloudStorageAccount;
+        }
+
+        private static string FormatName(string input, string prefix)
+        {
+            var cultureInfo = Thread.CurrentThread.CurrentCulture;
+            var textInfo = cultureInfo.TextInfo;
+
+            var output = input
+                .Replace(prefix, "")
+                .Replace(".md", "");
+ 
+            return textInfo.ToTitleCase(output);
+        }
+
+        private static int ConvertStringToInt(string input)
+        {
+            var result = Int32.TryParse(input, out int output);
+
+            var converted = result ? output : 0;
+
+            return converted;
         }
 
         private static string GetMonthLong(string month)
