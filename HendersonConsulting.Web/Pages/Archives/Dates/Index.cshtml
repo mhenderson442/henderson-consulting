@@ -18,24 +18,20 @@
                     <div class="card">
                         <div class="card-header">@month.MonthName</div>
                         <div class="card-body">
-                            <dl>
-                            @foreach(var day in month.BlogPostDayList.OrderBy(x => x.DayName))
+                            <ul>
+                            @foreach (var item in month.BlogPostItems.OrderBy(x => x.Name))
                             {
-                                <dt>@day.DayName.Replace("_"," ")</dt>
-                                @foreach(var post in day.BlogPostList.OrderBy(x => x.Name))
-                                {
-                                    var parms = new Dictionary<string, string>
-                                    {
-                                        { "year", year.Year.ToString() },
-                                        { "month", month.Month.ToString("D2") },
-                                        { "day", day.Day.ToString("D2") },
-                                        { "name", post.Name }
-                                    };
+                                var parms = new Dictionary<string, string>
+                                            {
+                                                { "year", item.Prefix.Substring(0,4) },
+                                                { "month", item.Prefix.Substring(5,2) },
+                                                { "day", item.Prefix.Substring(8,2) },
+                                                { "name", item.Name.Replace(" ", "_").ToLower() }
+                                            };
 
-                                    <dd><a asp-page="/Post" asp-all-route-data="parms" >@post.Name</a></dd>
-                                }
+                                <li><a asp-page="/Post" asp-all-route-data="parms">@item.Name.Replace("_", " ")</a>  </li>
                             }
-                            </dl>
+                            </ul>
                         </div>
                     </div>
                     }

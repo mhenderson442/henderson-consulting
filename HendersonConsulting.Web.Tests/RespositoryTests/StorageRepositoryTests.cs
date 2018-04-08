@@ -67,6 +67,25 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
             Assert.IsType<BlogPostContent>(sut);
         }
 
+        [Fact(DisplayName = "GetBlogPostItemAsync should return a CloudBlobClient")]
+        [Trait("Category", "StorageRepositoryTests")]
+        public async Task GetBlogAsyncPostItemReturnsCloudBlobClient()
+        {
+            // Arrange
+            var storageRepository = new StorageRepository(_iOptions.Object);
+
+            var year = "2018";
+            var month = "04";
+            var day = "07";
+            var name = "reboot";
+
+            // Act
+            var sut = await storageRepository.GetBlogPostItemAsync(year, month, day, name);
+
+            // Assert
+            Assert.IsType<BlogPostContent>(sut);
+        }
+
         [Fact(DisplayName = "GetStaticContentBaseUrl should return a string")]
         [Trait("Category", "StorageRepositoryTests")]
         public async Task GetStaticContentBaseUrlAsyncReturnsString()

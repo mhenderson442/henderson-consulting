@@ -70,7 +70,7 @@ namespace HendersonConsulting.Web.Repositories
 
         private async Task<List<BlogPostMonth>> GetBlogMonths(List<CloudBlockBlob> blobList)
         {            
-            var days = await GetBlogDays(blobList);
+            var items = await GetBlogPosts(blobList);
 
             var months = blobList
                 .GroupBy(x => x.Parent.Parent.Prefix)
@@ -81,11 +81,41 @@ namespace HendersonConsulting.Web.Repositories
                     Prefix = x.Parent.Parent.Prefix,
                     Month = ConvertStringToInt(x.Name.Substring(5, 2)),
                     MonthName = GetMonthLong(x.Name.Substring(5, 2)),
-                    BlogPostDayList = days.Where(y => y.Prefix == x.Parent.Prefix).ToList()
+                    BlogPostItems = items.Where(y => y.Prefix.Substring(0,8) == x.Parent.Parent.Prefix).ToList()
                 })
                 .ToList();
 
             return await Task.Run(() => months);
+        }
+
+        public async Task<BlogPostContent> GetBlogPostItemAsync(string year, string month, string day, string name)
+        {
+            var blobName = $"{ year }/{ month }/{ day }/{ name }.md";
+
+            var blobResultSegment = await GetBlobResultSegment();
+
+            var blogPostItem = blobResultSegment.Results
+                .Where(x => x.GetType() == typeof(CloudBlockBlob))
+                .Select(x => (CloudBlockBlob)x)
+                .FirstOrDefault(x => x.Name == blobName);
+
+            var opContext = new OperationContext();
+
+            var stream = await blogPostItem.OpenReadAsync(null, null, opContext);
+
+            using (var reader = new StreamReader(stream))
+            {
+                var contentBuilder = new StringBuilder();
+
+                var blobContent = await reader.ReadToEndAsync();
+
+                var blogPostContent = new BlogPostContent
+                {
+                    PageContent = blobContent
+                };
+
+                return blogPostContent;
+            }
         }
 
         public async Task<string> GetStaticContentBaseUrlAsync()
