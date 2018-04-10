@@ -12,5 +12,6 @@ namespace HendersonConsulting.Web.Repositories
         Task<BlogPostContent> GetDefaultPostItemAsync();
         Task<string> GetStaticContentBaseUrlAsync();
         Task<BlogPostContent> GetBlogPostItemAsync(string year, string month, string day, string name);
+        Task<CloudBlockBlob> GetImageBlobAsych(string itemPath);
     }
 }

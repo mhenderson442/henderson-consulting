@@ -6,5 +6,6 @@
         public string StorageAccountName { get; set; }
         public string StorageAccountKey { get; set; }
         public string BlogPostContainer { get; set; }
+        public string ImagesContainer { get; set; }
     }
 }

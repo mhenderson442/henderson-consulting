@@ -20,7 +20,8 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
             {
                 StorageAccountKey = "VoNHODPRPhx+5wHM5sCba038nbsS3fhQe8yzkXB+4dR7Lz+oF04SKvXiH+K048OXzFyHFkhNO15IzCODimsvJQ==",
                 StorageAccountName = "hendersonconsulting",
-                BlogPostContainer = "henderson-consulting-posts"
+                BlogPostContainer = "henderson-consulting-posts",
+                ImagesContainer = "henderson-consulting-images"
             });
         }
 
@@ -100,6 +101,19 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
             Assert.IsType<string>(sut);
         }
 
+        [Fact(DisplayName = "GetImageBlobAsych should return a CloudBlockBlob")]
+        [Trait("Category", "StorageRepositoryTests")]
+        public async Task GetImageBlobAsychReturnsCloudBlockBlob()
+        {
+            // Arrange
+            var itemPath = "images/test.png";
+            var storageRepository = new StorageRepository(_iOptions.Object);
 
+            // Act
+            var sut = await storageRepository.GetImageBlobAsych(itemPath);
+
+            // Assert
+            Assert.IsType<CloudBlockBlob>(sut);
+        }
     }
 }

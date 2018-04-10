@@ -92,7 +92,7 @@ namespace HendersonConsulting.Web.Repositories
         {
             var blobName = $"{ year }/{ month }/{ day }/{ name }.md";
 
-            var blobResultSegment = await GetBlobResultSegment();
+            var blobResultSegment = await GetBlobResultSegment(_appSettings.BlogPostContainer);
 
             var blogPostItem = blobResultSegment.Results
                 .Where(x => x.GetType() == typeof(CloudBlockBlob))
@@ -118,6 +118,18 @@ namespace HendersonConsulting.Web.Repositories
             }
         }
 
+        public async Task<CloudBlockBlob> GetImageBlobAsych(string itemPath)
+        {
+            var resultSegment = await GetBlobResultSegment(_appSettings.ImagesContainer);
+
+            var imageBlob = resultSegment.Results
+                .Where(x => x.GetType() == typeof(CloudBlockBlob))
+                .Select(x => (CloudBlockBlob)x)
+                .FirstOrDefault(x => x.Name == itemPath);
+
+            return await Task.Run(() => imageBlob);
+        }
+
         public async Task<string> GetStaticContentBaseUrlAsync()
         {
             var cloudStorageAccount = GetCloudStorageAccount(_appSettings.StorageAccountName, _appSettings.StorageAccountKey);
@@ -128,7 +140,7 @@ namespace HendersonConsulting.Web.Repositories
 
         public async Task<BlogPostContent> GetDefaultPostItemAsync()
         {
-            var blobResultSegment = await GetBlobResultSegment();
+            var blobResultSegment = await GetBlobResultSegment(_appSettings.BlogPostContainer);
             var blobList = await GetBlobList(blobResultSegment);
 
             var baseDate = DateTime.Now.AddYears(-2);
@@ -182,10 +194,10 @@ namespace HendersonConsulting.Web.Repositories
             return await Task.Run(() => years);
         }
 
-        private async Task<BlobResultSegment> GetBlobResultSegment()
+        private async Task<BlobResultSegment> GetBlobResultSegment(string container)
         {
             var blobClient = await GetCloudBlobClientAsync();
-            var containerReference = blobClient.GetContainerReference(_appSettings.BlogPostContainer);
+            var containerReference = blobClient.GetContainerReference(container);
 
             BlobContinuationToken continuationToken = null;
 
@@ -196,7 +208,7 @@ namespace HendersonConsulting.Web.Repositories
 
         public async Task<List<BlogPostYear>> GetBlogPostListAsync()
         {
-            var resultSegment = await GetBlobResultSegment();
+            var resultSegment = await GetBlobResultSegment(_appSettings.BlogPostContainer);
 
             if(resultSegment.Results.Count<IListBlobItem>() == 0)
             {
