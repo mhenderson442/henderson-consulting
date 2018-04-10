@@ -103,6 +103,8 @@ namespace HendersonConsulting.Web.Repositories
 
             var stream = await blogPostItem.OpenReadAsync(null, null, opContext);
 
+            var datePosted = await FormatDatePostedString(blogPostItem.Parent.Prefix);
+
             using (var reader = new StreamReader(stream))
             {
                 var contentBuilder = new StringBuilder();
@@ -111,6 +113,7 @@ namespace HendersonConsulting.Web.Repositories
 
                 var blogPostContent = new BlogPostContent
                 {
+                    DatePosted = datePosted,
                     PageContent = blobContent
                 };
 
@@ -157,6 +160,8 @@ namespace HendersonConsulting.Web.Repositories
 
             var stream = await blob.OpenReadAsync(null, null, opContext);
 
+            var datePosted = await FormatDatePostedString(blob.Parent.Prefix);
+
             using (var reader = new StreamReader(stream))
             {
                 var contentBuilder = new StringBuilder();
@@ -165,11 +170,23 @@ namespace HendersonConsulting.Web.Repositories
 
                 var blogPostContent = new BlogPostContent
                 {
+                    DatePosted = datePosted,
                     PageContent = blobContent
                 };
 
                 return blogPostContent;
             }
+        }
+
+        private async static Task<string> FormatDatePostedString(string prefix)
+        {
+            var year = prefix.Substring(0, 4);
+            var month = GetMonthLong(prefix.Substring(5, 2));
+            var day = prefix.Substring(8, 2);
+
+            var datePostedString = await Task.Run(() =>  $"Posted { day } { month } { year }");
+
+            return datePostedString;
         }
 
         private async Task<List<BlogPostYear>> GetBlogYears(BlobResultSegment resultSegment)

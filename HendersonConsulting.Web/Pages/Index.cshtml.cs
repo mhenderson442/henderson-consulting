@@ -7,8 +7,10 @@ namespace HendersonConsulting.Web.Pages
     public class IndexModel : PageModel
     {
         private readonly IStorageRepository _storageRepository;
-        
+
+        public string DatePosted { get; set; }
         public string PageContent { get; set; }
+        
 
         public IndexModel(IStorageRepository storageRepository)
         {
@@ -18,6 +20,7 @@ namespace HendersonConsulting.Web.Pages
         public async Task OnGetAsync()
         {
             var blogPostContent = await _storageRepository.GetDefaultPostItemAsync();
+            DatePosted = blogPostContent.DatePosted;
             PageContent = blogPostContent.PageContent;
         }
     }

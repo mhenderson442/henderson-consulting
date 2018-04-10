@@ -13,6 +13,7 @@ namespace HendersonConsulting.Web.Pages
         public string Day { get; set; }
         public string Name { get; set; }
 
+        public string DatePosted { get; set; }
         public string PageContent { get; set; }
 
         public PostModel(IStorageRepository storageRepository)
@@ -28,6 +29,7 @@ namespace HendersonConsulting.Web.Pages
             Name = name;
 
             var blogPostContent = await _storageRepository.GetBlogPostItemAsync(year, month, day, name);
+            DatePosted = blogPostContent.DatePosted;
             PageContent = blogPostContent.PageContent;
         }
     }
