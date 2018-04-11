@@ -4,12 +4,16 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>@ViewData["Title"]</title>
+    <meta name="author" content="Michael O. Henderson" />
+    <meta name="description" content="Personal blog about application programming and data. Opinions are my own." />
 
     <!-- Material Design for Bootstrap fonts and icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 
     <!-- Material Design for Bootstrap CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
     <link type="text/css" rel="stylesheet" href="~/css/Site.css" asp-append-version="true">
 </head>
@@ -44,6 +48,10 @@
                 @RenderBody()
             </section>
             <aside id="blog-list-aside" class="col-md-4">
+
+                <a href="https://twitter.com/mhenderson442" title="Follow me on twitter" target="_blank"><i class="zmdi zmdi-twitter zmdi-hc-3x"></i></a>
+                <a href="https://www.linkedin.com/in/mohenderson/" title="I'm on LinkedIn" target="_blank"><i class="zmdi zmdi-linkedin-box zmdi-hc-3x"></i></a>
+                <a href="https://github.com/mhenderson442" title="I'm on LinkedIn" target="_blank"><i class="zmdi zmdi-github-alt zmdi-hc-3x"></i></a>
                 @RenderSection("aside", required: false)
             </aside>
         </div>
