@@ -6,3 +6,32 @@
 
 <h1>Archives By Category</h1>
 <p>New content forthcoming.</p>
+
+<div class="container">
+@foreach (var category in Model.Categories)
+{
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">@category.Name</div>
+                <div class="card-body">
+                    <ul>
+                    @foreach(var item in category.BlogPostItems)
+                    {
+                        var parms = new Dictionary<string, string>
+                                            {
+                                                { "year", item.Prefix.Substring(0,4) },
+                                                { "month", item.Prefix.Substring(5,2) },
+                                                { "day", item.Prefix.Substring(8,2) },
+                                                { "name", item.Name.Replace(" ", "_").ToLower() }
+                                            };
+
+                        <li><a asp-page="/Post" asp-all-route-data="parms">@item.Name.Replace("_", " ")</a>  </li>
+                    }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>

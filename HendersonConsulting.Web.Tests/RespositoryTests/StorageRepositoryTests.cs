@@ -21,7 +21,8 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
                 StorageAccountKey = "VoNHODPRPhx+5wHM5sCba038nbsS3fhQe8yzkXB+4dR7Lz+oF04SKvXiH+K048OXzFyHFkhNO15IzCODimsvJQ==",
                 StorageAccountName = "hendersonconsulting",
                 BlogPostContainer = "henderson-consulting-posts",
-                ImagesContainer = "henderson-consulting-images"
+                ImagesContainer = "henderson-consulting-images",
+                StaticContainer = "henderson-consulting-static"
             });
         }
 
@@ -114,6 +115,20 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
 
             // Assert
             Assert.IsType<CloudBlockBlob>(sut);
+        }
+
+        [Fact(DisplayName = "GetCategoriesAsync should return a list of type Category")]
+        [Trait("Category", "StorageRepositoryTests")]
+        public async Task GetCategoriesAsyncReturnsList()
+        {
+            // Arrange
+            var storageRepository = new StorageRepository(_iOptions.Object);
+
+            // Act
+            var sut = await storageRepository.GetCategoriesAsync();
+
+            // Assert
+            Assert.IsType<List<Category>>(sut);
         }
     }
 }

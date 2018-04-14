@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Newtonsoft.Json;
 
 namespace HendersonConsulting.Web.Repositories
 {
@@ -92,17 +93,13 @@ namespace HendersonConsulting.Web.Repositories
         {
             var blobName = $"{ year }/{ month }/{ day }/{ name }.md";
 
-            var blobResultSegment = await GetBlobResultSegment(_appSettings.BlogPostContainer);
-
-            var blogPostItem = blobResultSegment.Results
-                .Where(x => x.GetType() == typeof(CloudBlockBlob))
-                .Select(x => (CloudBlockBlob)x)
-                .FirstOrDefault(x => x.Name == blobName);
+            var client = await GetCloudBlobClientAsync();
+            var container = client.GetContainerReference(_appSettings.BlogPostContainer);
+            var blogPostItem = container.GetBlockBlobReference(blobName);
 
             var opContext = new OperationContext();
 
             var stream = await blogPostItem.OpenReadAsync(null, null, opContext);
-
             var datePosted = await FormatDatePostedString(blogPostItem.Parent.Prefix);
 
             using (var reader = new StreamReader(stream))
@@ -131,6 +128,26 @@ namespace HendersonConsulting.Web.Repositories
                 .FirstOrDefault(x => x.Name == itemPath);
 
             return await Task.Run(() => imageBlob);
+        }
+
+        public async Task<List<Category>> GetCategoriesAsync()
+        {
+            var fileName = "categories.json";
+            var client = await GetCloudBlobClientAsync();
+            var container = client.GetContainerReference(_appSettings.StaticContainer);
+            var categoriesFile = container.GetBlockBlobReference(fileName);
+
+            var opContext = new OperationContext();
+            var stream = await categoriesFile.OpenReadAsync(null, null, opContext);
+
+            using (var reader = new StreamReader(stream))
+            {
+                var categories = await reader.ReadToEndAsync();
+                var list = JsonConvert.DeserializeObject<List<Category>>(categories);
+                list.ForEach(f => f.BlogPostItems.ForEach(fx => fx.Name = FormatName(fx.Name)));
+
+                return list;
+            }                      
         }
 
         public async Task<string> GetStaticContentBaseUrlAsync()
@@ -253,6 +270,13 @@ namespace HendersonConsulting.Web.Repositories
             return cloudStorageAccount;
         }
 
+        private static string FormatName(string input)
+        {
+            var cultureInfo = Thread.CurrentThread.CurrentCulture;
+            var textInfo = cultureInfo.TextInfo;
+            return textInfo.ToTitleCase(input);
+        }
+
         private static string FormatName(string input, string prefix)
         {
             var cultureInfo = Thread.CurrentThread.CurrentCulture;
@@ -261,7 +285,7 @@ namespace HendersonConsulting.Web.Repositories
             var output = input
                 .Replace(prefix, "")
                 .Replace(".md", "");
- 
+
             return textInfo.ToTitleCase(output);
         }
 

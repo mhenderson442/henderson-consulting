@@ -8,7 +8,7 @@ namespace HendersonConsulting.Web.Models
 
         public int Year { get; set; }
 
-        public List<BlogPostMonth> Months { get; set; } 
-
+        public List<BlogPostMonth> Months { get; set; }
+       
     }
 }
