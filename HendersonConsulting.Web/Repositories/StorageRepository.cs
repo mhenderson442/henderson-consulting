@@ -23,16 +23,6 @@ namespace HendersonConsulting.Web.Repositories
             _appSettings = appSettings.Value;
         }
 
-        private async Task<List<CloudBlockBlob>> GetBlobList(BlobResultSegment blobResultSegment)
-        {
-            var blobList = blobResultSegment.Results
-                .Where(x => x.GetType() == typeof(CloudBlockBlob))
-                .Select(x => (CloudBlockBlob)x)
-                .ToList();
-
-            return await Task.Run(() => blobList);
-        }
-
         private async Task<List<BlogPostItem>> GetBlogPosts(List<CloudBlockBlob> blobList)
         {
             var posts = blobList
@@ -120,9 +110,9 @@ namespace HendersonConsulting.Web.Repositories
 
         public async Task<CloudBlockBlob> GetImageBlobAsych(string itemPath)
         {
-            var resultSegment = await GetBlobResultSegment(_appSettings.ImagesContainer);
+            var blobList = await GetBlobList(_appSettings.ImagesContainer);
 
-            var imageBlob = resultSegment.Results
+            var imageBlob = blobList
                 .Where(x => x.GetType() == typeof(CloudBlockBlob))
                 .Select(x => (CloudBlockBlob)x)
                 .FirstOrDefault(x => x.Name == itemPath);
@@ -160,8 +150,7 @@ namespace HendersonConsulting.Web.Repositories
 
         public async Task<BlogPostContent> GetDefaultPostItemAsync()
         {
-            var blobResultSegment = await GetBlobResultSegment(_appSettings.BlogPostContainer);
-            var blobList = await GetBlobList(blobResultSegment);
+            var blobList = await GetBlobList(_appSettings.BlogPostContainer);
 
             var baseDate = DateTime.Now.AddYears(-2);
 
@@ -206,9 +195,8 @@ namespace HendersonConsulting.Web.Repositories
             return datePostedString;
         }
 
-        private async Task<List<BlogPostYear>> GetBlogYears(BlobResultSegment resultSegment)
+        private async Task<List<BlogPostYear>> GetBlogYears(List<CloudBlockBlob> blobList)
         {
-            var blobList = await GetBlobList(resultSegment);
            
             var months = await GetBlogMonths(blobList);
 
@@ -228,28 +216,40 @@ namespace HendersonConsulting.Web.Repositories
             return await Task.Run(() => years);
         }
 
-        private async Task<BlobResultSegment> GetBlobResultSegment(string container)
+        private async Task<List<CloudBlockBlob>> GetBlobList(string container)
         {
             var blobClient = await GetCloudBlobClientAsync();
             var containerReference = blobClient.GetContainerReference(container);
 
+            var results = new List<IListBlobItem>();
             BlobContinuationToken continuationToken = null;
 
-            var resultSegment = await containerReference.ListBlobsSegmentedAsync("", true, BlobListingDetails.All, 10, continuationToken, null, null);
+            do
+            {
+                var response = await containerReference.ListBlobsSegmentedAsync("", true, BlobListingDetails.All, 10, continuationToken, null, null);
+                continuationToken = response.ContinuationToken;
+                results.AddRange(response.Results);
 
-            return resultSegment;
+            } while (continuationToken != null);
+
+            var blobList = results
+                .Where(x => x.GetType() == typeof(CloudBlockBlob))
+                .Select(x => (CloudBlockBlob)x)
+                .ToList();
+
+            return blobList;
         }
 
         public async Task<List<BlogPostYear>> GetBlogPostListAsync()
         {
-            var resultSegment = await GetBlobResultSegment(_appSettings.BlogPostContainer);
+            var blobList = await GetBlobList(_appSettings.BlogPostContainer);
 
-            if(resultSegment.Results.Count<IListBlobItem>() == 0)
+            if(blobList.Count == 0)
             {
                 return null;
             }
 
-            var list = await GetBlogYears(resultSegment);
+            var list = await GetBlogYears(blobList);
            
             return list;
         }
