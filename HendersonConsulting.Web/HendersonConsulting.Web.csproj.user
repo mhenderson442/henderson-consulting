@@ -7,7 +7,7 @@
     <WebStackScaffolding_IsLayoutPageSelected>True</WebStackScaffolding_IsLayoutPageSelected>
     <WebStackScaffolding_IsPartialViewSelected>False</WebStackScaffolding_IsPartialViewSelected>
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>True</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
-    <ShowAllFiles>false</ShowAllFiles>
+    <ShowAllFiles>true</ShowAllFiles>
     <ToolsVersionPromptShown>0.0</ToolsVersionPromptShown>
     <NameOfLastUsedPublishProfile>mohenderson - Web Deploy</NameOfLastUsedPublishProfile>
     <ActiveDebugProfile>HendersonConsulting.Web</ActiveDebugProfile>

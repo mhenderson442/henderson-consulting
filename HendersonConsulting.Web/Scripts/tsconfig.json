@@ -8,7 +8,8 @@
   },
   "compileOnSave": true,
   "files": [
-    "./app.ts"
+    "./app.ts",
+    "./Utilities/random-pages.ts"
   ],
   "exclude": [
     "node_modules",

@@ -8,5 +8,6 @@
         public string BlogPostContainer { get; set; }
         public string ImagesContainer { get; set; }
         public string StaticContainer { get; set; }
+        public string NcdcToken { get; set; }
     }
 }

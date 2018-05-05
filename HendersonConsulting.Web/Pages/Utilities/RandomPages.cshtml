@@ -1,0 +1,61 @@
+﻿@page
+@model HendersonConsulting.Web.Pages.Utilities.RandomPagesModel
+@{
+    ViewData["Title"] = "Random pages list generator.";
+}
+@section meta{
+    <meta name="keywords" content="" />
+}
+
+<h1>Random pages list generator.</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <p>When proofreading, editing or otherwise reviewing a manuscript it's helpful to start at a random point. This allow for a fresh look things. Use this utility the generate a random list of pages.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <form>
+                <div class="form-group">
+                    <label for="manuscript-length">Manuscript Length</label>
+                    <input type="number" required class="form-control" id="manuscript-length" />
+                </div>
+                <div class="form-group">
+                    <label for="page-count">Page Count</label>
+                    <input type="number" required class="form-control" id="page-count" />
+                </div>
+                <button type="button" id="get-page-list" class="btn btn-primary">Get Page List</button>
+                <button type="button" id="clear-page-list" class="btn btn-primary">Clear Page List</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div id="random-generator-results" class="col-12"></div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script id="pages-template" type="text/x-handlebars-template">
+        <p>Generator produced {{ pageCount }} pages to review for a {{ manuscriptLength }} page manuscript.</p>
+        <table id="page-table" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Pages</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each list}}
+                <tr>
+                    <td>Page {{ pageNumber }}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="~/js/Utilities/random-pages.js" asp-append-version="true"></script>
+} 

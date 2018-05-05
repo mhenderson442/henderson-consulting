@@ -95,7 +95,6 @@ namespace HendersonConsulting.Web.Repositories
             using (var reader = new StreamReader(stream))
             {
                 var contentBuilder = new StringBuilder();
-
                 var blobContent = await reader.ReadToEndAsync();
 
                 var blogPostContent = new BlogPostContent

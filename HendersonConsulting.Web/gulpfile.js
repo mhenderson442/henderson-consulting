@@ -1,4 +1,5 @@
-﻿var gulp = require('gulp');
+﻿/// <binding AfterBuild='default' />
+var gulp = require('gulp');
 var less = require('gulp-less');
 var path = require('path');
 
@@ -8,6 +9,9 @@ var wwwroot = {
 
 gulp.task('default', function () {
     // place code for your default task here
+
+    return gulp.src('./Scripts/**/*.js')
+        .pipe(gulp.dest('./wwwroot/js'));
 });
 
 gulp.task('less', function () {
