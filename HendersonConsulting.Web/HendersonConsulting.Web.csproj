@@ -8,25 +8,40 @@
 
   <ItemGroup>
     <None Remove="Scripts\app.ts" />
+    <None Remove="Scripts\Goodreads\index.ts" />
+    <None Remove="Scripts\Utilities\climate-weather.ts" />
     <None Remove="Scripts\Utilities\random-pages.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.AzureKeyVault.HostingStartup" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
     <PackageReference Include="TagHelperSamples.Bootstrap" Version="2.0.30" />
     <PackageReference Include="TagHelperSamples.Markdown" Version="2.0.30" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\app.ts" />
+    <TypeScriptCompile Include="Scripts\Goodreads\index.ts" />
+    <TypeScriptCompile Include="Scripts\Utilities\climate-weather.ts" />
     <TypeScriptCompile Include="Scripts\Utilities\random-pages.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\About\Index.cshtml.cs">
+      <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
 
 </Project>

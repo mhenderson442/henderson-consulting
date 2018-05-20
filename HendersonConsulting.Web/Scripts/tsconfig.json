@@ -9,7 +9,9 @@
   "compileOnSave": true,
   "files": [
     "./app.ts",
-    "./Utilities/random-pages.ts"
+    "./Utilities/random-pages.ts",
+    "./Utilities/climate-weather.ts",
+    "./Goodreads/index.ts"
   ],
   "exclude": [
     "node_modules",

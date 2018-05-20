@@ -4,3 +4,7 @@ body {
 .jumbotron {
   background-image: url("/images/profile_header.jpg");
 }
+.toc-entry,
+.toc-entry a {
+  display: block;
+}

@@ -1,22 +1,31 @@
-﻿using HendersonConsulting.Web.Models;
-using HendersonConsulting.Web.Repositories;
-using Microsoft.Extensions.Options;
-using Microsoft.WindowsAzure.Storage.Blob;
-using Moq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace HendersonConsulting.Web.Tests.RespositoryTests
+﻿namespace HendersonConsulting.Web.Tests.RespositoryTests
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using HendersonConsulting.Web.Models;
+    using HendersonConsulting.Web.Repositories;
+    using Microsoft.Extensions.Options;
+    using Microsoft.WindowsAzure.Storage.Blob;
+    using Moq;
+    using Xunit;
+
+    /// <summary>
+    /// Tests for <see cref="StorageRepository"/> class.
+    /// </summary>
     public class StorageRepositoryTests
     {
-        private readonly Mock<IOptions<AppSettings>> _iOptions;
+        /// <summary>
+        /// <see cref="AppSettings"/> mocked instance.
+        /// </summary>
+        private readonly Mock<IOptions<AppSettings>> _appSettingsOptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StorageRepositoryTests" /> class.
+        /// </summary>
         public StorageRepositoryTests()
         {
-            _iOptions = new Mock<IOptions<AppSettings>>();
-            _iOptions.Setup(x => x.Value).Returns(new AppSettings
+            _appSettingsOptions = new Mock<IOptions<AppSettings>>();
+            _appSettingsOptions.Setup(x => x.Value).Returns(new AppSettings
             {
                 StorageAccountKey = "VoNHODPRPhx+5wHM5sCba038nbsS3fhQe8yzkXB+4dR7Lz+oF04SKvXiH+K048OXzFyHFkhNO15IzCODimsvJQ==",
                 StorageAccountName = "hendersonconsulting",
@@ -27,11 +36,11 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
         }
 
         [Fact(DisplayName = "GetPostItemsAsync should return a list of type PostYears")]
-        [Trait("Category", "StorageRepositoryTests" )]
+        [Trait("Category", "StorageRepositoryTests")]
         public async Task GetBlogPostsAsyncReturnsList()
         { 
             // Arrange
-            var storageRepository = new StorageRepository(_iOptions.Object);
+            var storageRepository = new StorageRepository(_appSettingsOptions.Object);
 
             // Act
             var sut = await storageRepository.GetBlogPostListAsync();
@@ -45,7 +54,7 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
         public async Task GetCloudBlobClientAsyncReturnsCloudBlobClient()
         {
             // Arrange
-            var storageRepository = new StorageRepository(_iOptions.Object);
+            var storageRepository = new StorageRepository(_appSettingsOptions.Object);
 
             // Act
             var sut = await storageRepository.GetCloudBlobClientAsync();
@@ -54,13 +63,12 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
             Assert.IsType<CloudBlobClient>(sut);
         }
 
-
         [Fact(DisplayName = "GetDefaultPostItemAsync should return a CloudBlobClient")]
         [Trait("Category", "StorageRepositoryTests")]
         public async Task GetDefaultPostItemAsyncReturnsCloudBlobClient()
         {
             // Arrange
-            var storageRepository = new StorageRepository(_iOptions.Object);
+            var storageRepository = new StorageRepository(_appSettingsOptions.Object);
 
             // Act
             var sut = await storageRepository.GetDefaultPostItemAsync();
@@ -74,7 +82,7 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
         public async Task GetBlogAsyncPostItemReturnsCloudBlobClient()
         {
             // Arrange
-            var storageRepository = new StorageRepository(_iOptions.Object);
+            var storageRepository = new StorageRepository(_appSettingsOptions.Object);
 
             var year = "2018";
             var month = "04";
@@ -93,7 +101,7 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
         public async Task GetStaticContentBaseUrlAsyncReturnsString()
         {
             // Arrange
-            var storageRepository = new StorageRepository(_iOptions.Object);
+            var storageRepository = new StorageRepository(_appSettingsOptions.Object);
 
             // Act
             var sut = await storageRepository.GetStaticContentBaseUrlAsync();
@@ -108,7 +116,7 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
         {
             // Arrange
             var itemPath = "images/test.png";
-            var storageRepository = new StorageRepository(_iOptions.Object);
+            var storageRepository = new StorageRepository(_appSettingsOptions.Object);
 
             // Act
             var sut = await storageRepository.GetImageBlobAsych(itemPath);
@@ -122,7 +130,7 @@ namespace HendersonConsulting.Web.Tests.RespositoryTests
         public async Task GetCategoriesAsyncReturnsList()
         {
             // Arrange
-            var storageRepository = new StorageRepository(_iOptions.Object);
+            var storageRepository = new StorageRepository(_appSettingsOptions.Object);
 
             // Act
             var sut = await storageRepository.GetCategoriesAsync();

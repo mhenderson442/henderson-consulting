@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HendersonConsulting.Web", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HendersonConsulting.Web.Tests", "HendersonConsulting.Web.Tests\HendersonConsulting.Web.Tests.csproj", "{5DAE0A27-FA1C-4C43-95C0-39194BA3F0A3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AFF2EDC7-201A-47E7-80DB-0BF7B824BDF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4DCD4238-CF7E-4EE0-BCF4-5D4CE1B4FD8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2322305A-230A-408B-B4FB-E93CA087E20A} = {AFF2EDC7-201A-47E7-80DB-0BF7B824BDF2}
+		{5DAE0A27-FA1C-4C43-95C0-39194BA3F0A3} = {4DCD4238-CF7E-4EE0-BCF4-5D4CE1B4FD8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E60F6C8A-0B07-4F53-B6D4-9C16F30F1C8B}

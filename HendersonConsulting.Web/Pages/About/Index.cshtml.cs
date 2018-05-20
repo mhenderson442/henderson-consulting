@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace HendersonConsulting.Web.Pages.About
+﻿namespace HendersonConsulting.Web.Pages.About
 {
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+
+    /// <summary>
+    /// Page model for About. <see cref="IndexModel"/>
+    /// </summary>
     public class IndexModel : PageModel
     {
+        /// <summary>
+        /// OnGet method for <see cref="IndexModel"/>.
+        /// </summary>
         public void OnGet()
         {
-
         }
     }
 }

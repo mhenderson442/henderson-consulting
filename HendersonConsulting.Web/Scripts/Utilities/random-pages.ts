@@ -4,14 +4,14 @@
     $('#clear-page-list').on('click', clearPageList);
 });
 
-interface ReviewPage {
+interface IReviewPage {
     pageNumber: number;
 }
 
-interface GeneratorResult {
+interface IGeneratorResult {
     manuscriptLength: number | string | string[];
     pageCount: number | string | string[];
-    list: Array<ReviewPage>;
+    list: Array<IReviewPage>;
 }
 
 function getRandomInt(max) {
@@ -25,11 +25,11 @@ function clearPageList() {
 
 function getPageList() {
 
-    let list: Array<ReviewPage> = [];
+    let list: Array<IReviewPage> = [];
     let manuscriptLength: number | string | string[] = $('#manuscript-length').val();
     let pageCount: number | string | string[] = $('#page-count').val();
 
-    let generatorResult: GeneratorResult = {
+    let generatorResult: IGeneratorResult = {
         manuscriptLength: manuscriptLength,
         pageCount: pageCount,
         list: list
@@ -37,7 +37,7 @@ function getPageList() {
 
     for (var i = 0; i < pageCount; i++) {
         let pageNumber: number = getRandomInt(manuscriptLength);
-        let reviewPage: ReviewPage = { pageNumber: pageNumber };
+        let reviewPage: IReviewPage = { pageNumber: pageNumber };
         generatorResult.list.push(reviewPage);
     }
 
