@@ -27,7 +27,7 @@
             _appSettingsOptions = new Mock<IOptions<AppSettings>>();
             _appSettingsOptions.Setup(x => x.Value).Returns(new AppSettings
             {
-                StorageAccountKey = "VoNHODPRPhx+5wHM5sCba038nbsS3fhQe8yzkXB+4dR7Lz+oF04SKvXiH+K048OXzFyHFkhNO15IzCODimsvJQ==",
+                StorageAccountKey = "<StorageAccountKey>",
                 StorageAccountName = "hendersonconsulting",
                 BlogPostContainer = "henderson-consulting-posts",
                 ImagesContainer = "henderson-consulting-images",
