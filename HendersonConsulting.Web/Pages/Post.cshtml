@@ -1,9 +1,0 @@
-﻿@page "{year}/{month}/{day}/{name}"
-@model HendersonConsulting.Web.Pages.PostModel
-@{
-    ViewData["Title"] = "Post";
-}
-
-<markdown content="@Model.PageContent" />
-<hr />
-<p>@Model.DatePosted</p>
