@@ -5,5 +5,8 @@
     },
     "keyVault":{
         "name": "henderson-key-vault"
+    },
+    "storage":{
+        "name":"hendersonconsultstorage"
     }
 }

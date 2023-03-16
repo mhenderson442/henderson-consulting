@@ -15,3 +15,11 @@ module keyVault 'key-vault/hc-key-vault.bicep' = {
     location: configuration.location
   }
 }
+
+module storage 'storage/storage-account.bicep' = {
+  scope: group
+  name: '${configuration.storage.name}-${epoch}'
+  params: {
+    location: configuration.location
+  }
+}
