@@ -1,0 +1,9 @@
+{
+    "location":"northcentralus",
+    "resourceGroup":{
+        "name": "hc-resource-group"
+    },
+    "keyVault":{
+        "name": "henderson-key-vault"
+    }
+}
