@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\DevOps\\henderson-consulting\\hendersonconsultingweb\\hendersonconsultingweb.csproj": {}
+  },
+  "projects": {
+    "C:\\DevOps\\henderson-consulting\\hendersonconsultingweb\\hendersonconsultingweb.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\DevOps\\henderson-consulting\\hendersonconsultingweb\\hendersonconsultingweb.csproj",
+        "projectName": "hendersonconsultingweb",
+        "projectPath": "C:\\DevOps\\henderson-consulting\\hendersonconsultingweb\\hendersonconsultingweb.csproj",
+        "packagesPath": "C:\\Users\\mohen\\.nuget\\packages\\",
+        "outputPath": "C:\\DevOps\\henderson-consulting\\hendersonconsultingweb\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mohen\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.NET.Build.Containers": {
+              "target": "Package",
+              "version": "[0.3.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[7.0.4, 7.0.4]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "linux-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

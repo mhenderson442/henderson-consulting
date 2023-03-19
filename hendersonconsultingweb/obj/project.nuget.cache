@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "1h7vPEx9DzakWGqzwsHVrnrsHlNIiwqXcXvSFoAYoaT1AEw1OV21tDe9kW606Ijk7fKADShPfw7kCZLECaqKvQ==",
+  "success": true,
+  "projectFilePath": "C:\\DevOps\\henderson-consulting\\hendersonconsultingweb\\hendersonconsultingweb.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mohen\\.nuget\\packages\\microsoft.net.build.containers\\0.3.2\\microsoft.net.build.containers.0.3.2.nupkg.sha512",
+    "C:\\Users\\mohen\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\7.0.4\\microsoft.netcore.app.host.linux-x64.7.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

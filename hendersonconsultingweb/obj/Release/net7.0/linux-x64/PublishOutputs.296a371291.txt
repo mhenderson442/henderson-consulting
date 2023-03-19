@@ -1,0 +1,7 @@
+C:\DevOps\henderson-consulting\hendersonconsultingweb\bin\Release\net7.0\linux-x64\publish\hendersonconsultingweb
+C:\DevOps\henderson-consulting\hendersonconsultingweb\bin\Release\net7.0\linux-x64\publish\appsettings.Development.json
+C:\DevOps\henderson-consulting\hendersonconsultingweb\bin\Release\net7.0\linux-x64\publish\appsettings.json
+C:\DevOps\henderson-consulting\hendersonconsultingweb\bin\Release\net7.0\linux-x64\publish\hendersonconsultingweb.dll
+C:\DevOps\henderson-consulting\hendersonconsultingweb\bin\Release\net7.0\linux-x64\publish\hendersonconsultingweb.deps.json
+C:\DevOps\henderson-consulting\hendersonconsultingweb\bin\Release\net7.0\linux-x64\publish\hendersonconsultingweb.runtimeconfig.json
+C:\DevOps\henderson-consulting\hendersonconsultingweb\bin\Release\net7.0\linux-x64\publish\hendersonconsultingweb.pdb
