@@ -1,12 +1,23 @@
 {
-    "location":"northcentralus",
-    "resourceGroup":{
-        "name": "hc-resource-group"
+    "acrRegistry": {
+        "name": "hendresonconsultregistry"
     },
-    "keyVault":{
+    "keyVault": {
         "name": "henderson-key-vault"
     },
-    "storage":{
-        "name":"hendersonconsultstorage"
+    "location": "northcentralus",
+    "operationalInsights": {
+        "workspace": {
+            "name": "henderson-consulting-workspace"
+        }
+    },
+    "resourceGroup": {
+        "name": "hc-resource-group"
+    },
+    "storage": {
+        "name": "hendersonconsultstorage"
+    },
+    "containerAppEnvironment": {
+        "name": "henderson-consulting-container-env"
     }
 }
