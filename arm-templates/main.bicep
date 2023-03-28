@@ -50,3 +50,15 @@ module containerEnvironment 'container-apps/container-app-environment.bicep' = {
     location: configuration.location
   }
 }
+
+module app 'container-apps/container-app.bicep' = {
+  scope: group
+  name:  '${configuration.containerAppEnvironment.apps[0].name}-${epoch}'
+  dependsOn: [
+    containerEnvironment
+    acr
+  ]
+  params: {
+    location: configuration.location
+  }
+}

@@ -19,3 +19,4 @@ resource env 'Microsoft.App/managedEnvironments@2022-03-01' = {
     }
   }
 }
+

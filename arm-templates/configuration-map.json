@@ -1,6 +1,6 @@
 {
     "acrRegistry": {
-        "name": "hendresonconsultregistry"
+        "name": "hendersonconsultregistry"
     },
     "keyVault": {
         "name": "henderson-key-vault"
@@ -18,6 +18,17 @@
         "name": "hendersonconsultstorage"
     },
     "containerAppEnvironment": {
-        "name": "henderson-consulting-container-env"
+        "name": "henderson-consulting-container-env",
+        "apps":[
+            {
+                "name": "henderson-app",
+                "container":"hendersonconsultingweb:latest",
+                "secrets":[
+                    {
+                        "name": "container-registry-password"
+                    }
+                ]
+            }
+        ]
     }
 }
