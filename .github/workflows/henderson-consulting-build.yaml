@@ -1,0 +1,4 @@
+name: hendeson-consulting-resource-group-deployment
+run-name: ${{github.actor}} is building Henderson Consulting infrastructure
+on: [push]
+
