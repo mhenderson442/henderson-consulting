@@ -19,7 +19,7 @@ jobs:
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
       - uses: azure/arm-deploy@v1
-        name: Deploy Infrastructure
+        name: Deploy Azure Infrastructure
         with:
           scope: subscription
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
