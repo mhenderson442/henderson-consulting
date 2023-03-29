@@ -5,5 +5,5 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check Out
+      - name: Check Out Branch
         uses: actions/checkout@main
