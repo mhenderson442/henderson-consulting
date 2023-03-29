@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - uses: azure/actions/login@vs1
+      - uses: Azure/actions/login@V1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS  }}
       - uses: azure/arm-deploy@v1
