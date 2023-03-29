@@ -1,6 +1,6 @@
 name: hendeson-consulting-iac
 run-name: ${{github.actor}} is building Henderson Consulting infrastructure
-on: [push]
+on: push
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
