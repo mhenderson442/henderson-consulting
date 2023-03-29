@@ -1,4 +1,4 @@
-name: hendeson-consulting-resource-group-deployment
+name: hendeson-consulting-iac
 run-name: ${{github.actor}} is building Henderson Consulting infrastructure
 on: [push]
 jobs:
@@ -6,19 +6,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - uses: azure/cli@1.0.4
-        with:
-          azcliversion: latest
-          inlineScript: |
-            echo $(az --version)
-      - uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.CLIENT_ID }}
-          tenant-id: ${{ secrets.TENANT_ID }}
-          subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
-      - uses: azure/arm-deploy@v1
-        with:
-          scope: subscription
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-          template: ./arm-templates/main.bicep
-          parameters: 'location=northcentralus'
