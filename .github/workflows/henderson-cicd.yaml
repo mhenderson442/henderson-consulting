@@ -1,0 +1,9 @@
+name: Henderson Consulting CICD
+
+on: push
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
