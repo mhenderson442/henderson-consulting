@@ -6,13 +6,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
+      - uses: azure/cli@1.0.4
+        with:
+          azcliversion: latest
+          inlineScript: |
+            echo $(az --version)
       - uses: azure/login@v1
         with:
-          creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
-          allow-no-subscriptions: true
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: azure/arm-deploy@v1
         with:
-            scope: subscription
-            subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-            template: ./arm-templates/main.bicep
-            parameters: 'location=northcentralus'
+          scope: subscription
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          template: ./arm-templates/main.bicep
+          parameters: 'location=northcentralus'
