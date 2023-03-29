@@ -1,9 +1,8 @@
 name: hendeson-consulting-iac
 run-name: ${{github.actor}} is building Henderson Consulting infrastructure
-on: push
+on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check Out Branch
-        uses: actions/checkout@main
+      - uses: actions/checkout@main
