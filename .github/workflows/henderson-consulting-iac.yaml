@@ -6,20 +6,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-        name: Checkout Main
       - uses: azure/cli@1.0.4
         with:
           azcliversion: latest
           inlineScript: |
             echo $(az --version)
       - uses: azure/login@v1
-        name: Azure Login
         with:
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
       - uses: azure/arm-deploy@v1
-        name: Deploy Azure Infrastructure
         with:
           scope: subscription
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
