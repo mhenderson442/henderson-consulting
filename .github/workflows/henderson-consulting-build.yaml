@@ -2,12 +2,16 @@ name: hendeson-consulting-resource-group-deployment
 run-name: ${{github.actor}} is building Henderson Consulting infrastructure
 on: [push]
 jobs:
-  check-bats-version:
+  buid-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@main
+      - uses: azure/login@v1
         with:
-           node-version: 'lts/*'
-      - run: npm install -g bats
-      - run: bats -v 
+          creds: ${{ secrets.AZURE_SUBSCRIPTION }}
+      - uses: azure/arm-deploy@v1
+        with:
+            scope: subscription
+            subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+            template: ./arm-templates/main.bicep
+            parameters: 'location=northcentralus'
