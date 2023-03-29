@@ -2,13 +2,13 @@ name: hendeson-consulting-resource-group-deployment
 run-name: ${{github.actor}} is building Henderson Consulting infrastructure
 on: [push]
 jobs:
-  buid-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
       - uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_SUBSCRIPTION }}
+          creds: ${{ secrets.AZURE_CREDENTIALS  }}
       - uses: azure/arm-deploy@v1
         with:
             scope: subscription
