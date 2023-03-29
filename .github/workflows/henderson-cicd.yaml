@@ -3,23 +3,13 @@ name: Henderson Consulting CICD
 on: push
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-
       - name: Check out repository code
         uses: actions/checkout@v3
-        
-      - name: az version
-        uses: azure/cli@1.0.4
-        with:
-          azcliversion: latest
-          inlineScript: |
-            echo $(az --version)
-      
+     
       - name: Azure Login
         uses: azure/login@v1
         with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-            allow-no-subscriptions: true
