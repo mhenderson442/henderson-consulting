@@ -1,0 +1,31 @@
+name: build-and-deploy
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+ 
+variables:
+  - group: PipelineDeploymentVariables
+  - name: templateFile
+    value: '$(System.DefaultWorkingDirectory)/arm-templates/main.bicep'
+  
+stages:
+  - stage: deploy-azure-resoures
+    displayName: 'Deploy Azure Resources'
+    jobs:
+      - job: execute-arm-template
+        displayName: 'Execute ARM template'
+        steps:
+          - task: AzureResourceManagerTemplateDeployment@3
+            displayName: 'Template Deplpoyment'
+            inputs:
+              deploymentScope: 'Subscription'
+              deploymentMode: 'Incremental'
+              azureResourceManagerConnection: $(azureResourceManagerConnection)
+              action: 'Create Or Update Resource Group'
+              templateLocation: 'Linked artifact'
+              csmFile: $(templateFile)
+              deploymentName: 'henderson-consulting-deployment-$(Build.BuildId)'
+
+  
