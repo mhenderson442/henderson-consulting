@@ -1,0 +1,22 @@
+name: deploy-tsl-cert
+
+pool:
+  vmImage: ubuntu-latest
+ 
+variables:
+  - group: PipelineDeploymentVariables
+  - name: filePath
+    value: '$(System.DefaultWorkingDirectory)/pipelined/download-az-acme.ps1'
+
+stages:
+  - stage: cert-processing
+    displayName: 'SSL Cert Processins'
+    jobs:
+      - job: get-set-cert
+        displayName: 'Get and set certicficate'
+        steps:
+          - task: PowerShell@2
+            displayName: 'Get az-acme CLI'
+            inputs:
+              targetType: filePath
+              filePath: $(filePath)
