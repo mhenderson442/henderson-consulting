@@ -27,5 +27,5 @@ stages:
               arguments: >
                 - downloadedFile $(downloadedFile)
                 - defaultWorkingDirectory $(System.DefaultWorkingDirectory)
-          - bash: ls
+          - bash: ls .\downloadedFile
             displayName: 'Test Az-Acme'

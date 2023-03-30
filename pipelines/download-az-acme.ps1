@@ -9,4 +9,6 @@ Write-Host "Get az-acme"
 Invoke-WebRequest -Uri $azAcmeUserUri -OutFile $downloadedFile
 
 Write-Host "Unzip file"
+Write-Host downloadedFile
+Write-Host $defaultWorkingDirectosry
 Expand-Archive -Path $downloadedFile -DestinationPath $defaultWorkingDirectory
