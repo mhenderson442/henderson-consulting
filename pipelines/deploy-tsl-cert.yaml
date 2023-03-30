@@ -6,14 +6,14 @@ pool:
 variables:
   - group: PipelineDeploymentVariables
   - name: filePath
-    value: '$(System.DefaultWorkingDirectory)/pipelined/download-az-acme.ps1'
+    value: '$(System.DefaultWorkingDirectory)/pipelines/download-az-acme.ps1'
 
 stages:
   - stage: certProcessing
-    displayName: 'SSL Cert Processins'
+    displayName: 'SSL Cert Processing'
     jobs:
       - job: getSetCert
-        displayName: 'Get and set certicficate'
+        displayName: 'Get and set certificate'
         steps:
           - task: PowerShell@2
             displayName: 'Get az-acme CLI'
