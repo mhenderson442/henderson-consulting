@@ -28,4 +28,4 @@ stages:
                 - downloadedFile $(downloadedFile)
                 - defaultWorkingDirectory $(System.DefaultWorkingDirectory)
           - bash: az-acme help register 
-            displayName: 'Test Az-Acme'
+            displayName: 'ls'
