@@ -18,12 +18,13 @@ stages:
         displayName: 'Execute ARM template'
         steps:
           - task: AzureResourceManagerTemplateDeployment@3
-            displayName: 'Template Deplpoyment'
+            displayName: 'Template Deployment'
             inputs:
               deploymentScope: 'Subscription'
               deploymentMode: 'Incremental'
               azureResourceManagerConnection: $(azureResourceManagerConnection)
               action: 'Create Or Update Resource Group'
+              location: 'northcentralus'
               templateLocation: 'Linked artifact'
               csmFile: $(templateFile)
               deploymentName: 'henderson-consulting-deployment-$(Build.BuildId)'
