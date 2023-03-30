@@ -10,7 +10,7 @@ variables:
   - name: filePath
     value: '$(System.DefaultWorkingDirectory)/pipelines/download-az-acme.ps1'
   - name: downloadedFile
-    value: $(System.DefaultWorkingDirectory)/pipelines/cli-v0.3-win-x64.zip
+    value: '$(System.DefaultWorkingDirectory)/cli-v0.3-win-x64.zip'
 
 stages:
   - stage: certProcessing
