@@ -9,6 +9,8 @@ variables:
   - group: PipelineDeploymentVariables
   - name: filePath
     value: '$(System.DefaultWorkingDirectory)/pipelines/download-az-acme.ps1'
+  - name: downloadedFile
+    value: $(System.DefaultWorkingDirectory)/pipelines/cli-v0.3-win-x64.zip
 
 stages:
   - stage: certProcessing
@@ -23,4 +25,5 @@ stages:
               targetType: filePath
               filePath: $(filePath)
               arguments: >
+                - downloadedFile $(downloadedFile)
                 - defaultWorkingDirectory $(System.DefaultWorkingDirectory)
