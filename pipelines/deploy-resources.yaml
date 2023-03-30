@@ -1,4 +1,4 @@
-name: build-and-deploy
+name: buildAndDeployPipeline
 
 trigger: none
 
@@ -11,10 +11,10 @@ variables:
     value: '$(System.DefaultWorkingDirectory)/arm-templates/main.bicep'
   
 stages:
-  - stage: deploy-azure-resoures
+  - stage: deployAzureResoures
     displayName: 'Deploy Azure Resources'
     jobs:
-      - job: execute-arm-template
+      - job: executeArmTemplate
         displayName: 'Execute ARM template'
         steps:
           - task: AzureResourceManagerTemplateDeployment@3
