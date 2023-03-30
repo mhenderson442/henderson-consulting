@@ -1,5 +1,7 @@
 name: deployTslCert
 
+trigger: none
+
 pool:
   vmImage: ubuntu-latest
  
@@ -20,3 +22,5 @@ stages:
             inputs:
               targetType: filePath
               filePath: $(filePath)
+              arguments: >
+                - defaultWorkingDirectory $(System.DefaultWorkingDirectory)
