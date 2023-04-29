@@ -475,3 +475,18 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Cert related files
+pipelines/az-acme.exe
+pipelines/order-cert-hendersonconsulting.com.ps1
+pipelines/order-cert-hendersonconsulting.dev.ps1
+pipelines/order-cert-mohenderson.com.ps1
+pipelines/order-cert.ps1
+pipelines/register-cert-hendersonconsultin.dev.ps1
+pipelines/register-cert-hendersonconsulting.com.ps1
+pipelines/deploy-container.ps1
+pipelines/download-cert.ps1
+pipelines/register-cert-mohenderson.com.ps1
+pipelines/register-cert.ps1
+hendersonconsultingweb/.vscode/tasks.json
+hendersonconsultingweb/.vscode/launch.json
