@@ -1,4 +1,4 @@
-az deployment sub create `
+az deployment sub what-if `
     --name henderson-consulting-deployment `
     --location "northcentralus" `
     --template-file '.\main.bicep'

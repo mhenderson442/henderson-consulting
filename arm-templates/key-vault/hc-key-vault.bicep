@@ -7,10 +7,6 @@ resource vault 'Microsoft.KeyVault/vaults@2022-11-01' =  {
   location: location
   properties: {
     enableRbacAuthorization: true
-    networkAcls: {
-       bypass: 'AzureServices'
-       defaultAction: 'Allow'
-    }
     sku: {
       family: 'A'
       name: 'standard'

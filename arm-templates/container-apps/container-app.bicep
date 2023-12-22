@@ -28,6 +28,10 @@ resource app 'Microsoft.App/containerApps@2022-10-01' = {
         {
           image: '${acr.name}.azurecr.io/${config.containerAppEnvironment.apps[0].container}'
           name: config.containerAppEnvironment.apps[0].name
+          resources:{
+            cpu:  json('0.5')
+            memory: '1Gi'     
+          }
         }
       ]
       scale: {
@@ -52,6 +56,7 @@ resource app 'Microsoft.App/containerApps@2022-10-01' = {
       ]
       ingress:{
         external: true
+        exposedPort: 0
         targetPort: 80
         allowInsecure: false
         traffic:[
