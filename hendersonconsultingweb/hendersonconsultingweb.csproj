@@ -1,15 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
     <RootNamespace>HendersonConsulting.Web</RootNamespace>
-    <ContainerImageTags>1.0.0;latest</ContainerImageTags>
-  </PropertyGroup>
+    
+    <ContainerImageTags>1.1.2;latest</ContainerImageTags>
+    <!--<ContainerRepository>hendersonconsultingweb</ContainerRepository>
+    <ContainerRegistry>hendersonconsultregistry.azurecr.io</ContainerRegistry>-->
+    <ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:8.0</ContainerBaseImage>
+    
+  </PropertyGroup>0
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.307" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
