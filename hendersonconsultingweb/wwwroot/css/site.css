@@ -1,22 +1,53 @@
+@import url('fonts.css');
+
+:root {
+    --light: #ffffff;
+    --primary: #acbee0;
+    --dark: #121212;
+    --medium: #bebebe;
+}
+
+.bg-dark {
+    background-color: var(--dark);
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: 'Caskaydia-Regular', sans-serif;
+}
+
+.navbar {
+    color: var(--light);
+}
+
+.navbar-brand {
+    color: var(--light);
+}
+
+h1 {
+    font-family: 'Caskaydia-Bold', sans-serif;
+    text-transform: uppercase;
+}
+
+.mt-10 {
+    margin-top: 75px;
+}
+
+.bg-medium {
+    background-color: var(--medium)
 }

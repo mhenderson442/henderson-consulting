@@ -490,4 +490,7 @@ pipelines/register-cert-mohenderson.com.ps1
 pipelines/register-cert.ps1
 hendersonconsultingweb/.vscode/tasks.json
 hendersonconsultingweb/.vscode/launch.json
-/hendersonconsultingweb/wwwroot/fonts
+/hendersonconsultingweb/wwwroot/fonts/*
+/hendersonconsultingweb/wwwroot/lib/bootstrap/*
+/hendersonconsultingweb/wwwroot/lib/font-awesome/*
+

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Caskaydia-Regular';
+    src: url('/fonts/CaskaydiaCoveNerdFont-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Caskaydia-Bold';
+    src: url('/fonts/CaskaydiaCoveNerdFont-Bold.ttf') format('truetype');
+}
