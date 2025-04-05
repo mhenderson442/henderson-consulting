@@ -5,9 +5,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @await RenderSectionAsync("MetaTags", required: false)
     <title>@ViewData["Title"] - Henderson Consulting</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="d-flex flex-column h-100">
@@ -17,6 +18,9 @@
                 <a class="navbar-brand" asp-page="/Index">Henderson Consulting</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-page="EpochTimes">Epoch Times</a>
+                        </li>
                         <li class="nav-item ms-auto">
                             <a class="nav-link text-light" href="https://github.com/mhenderson442" target="_blank" name="GitHub Profile">
                                 <i class="fa-brands fa-github fa-xl"></i>
@@ -48,7 +52,7 @@
         </div>
     </footer>
 
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

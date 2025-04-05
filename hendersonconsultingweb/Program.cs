@@ -1,11 +1,8 @@
-using HendersonConsulting.Web.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
-builder.Services.AddSingleton<IBuildInfoService, BuildInfoService>();
+builder.Services.AddCustomServices();
 
 var app = builder.Build();
 

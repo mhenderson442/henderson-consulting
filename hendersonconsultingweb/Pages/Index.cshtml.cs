@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace HendersonConsulting.Web.Pages;
+﻿namespace HendersonConsulting.Web.Pages;
 
 public class IndexModel() : PageModel
 {
-    public string YearsExperience => GetYearsExpirenceValue();
+    public string YearsExperience => GetYearsExperienceValue();
 
     public void OnGet()
     {
     }
 
-    private static string GetYearsExpirenceValue()
+    private static string GetYearsExperienceValue()
     {
         var dateTimeCurrent = DateTime.Now;
         var dateTimeStart = new DateTime(1999, 1, 1, 0, 0, 0);
