@@ -13,7 +13,7 @@
 
     <RootNamespace>HendersonConsulting.Web</RootNamespace>
     
-    <ContainerImageTags>1.1.5</ContainerImageTags>
+    <ContainerImageTags>1.1.6</ContainerImageTags>
     <ContainerRepository>hendersonconsultingweb</ContainerRepository>
     <ContainerRegistry>hendersonconsultregistry.azurecr.io</ContainerRegistry>
     <ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:8.0</ContainerBaseImage>
