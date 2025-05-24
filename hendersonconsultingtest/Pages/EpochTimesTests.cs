@@ -1,18 +1,22 @@
 ﻿using HendersonConsulting.Web.Pages;
-using Moq;
 
 namespace HendersonConsulting.Web.Test.Pages;
 
-public class EpochTimesTests
+public class EpochTimesTests : TestBase
 {
+    private readonly ServiceProvider _serviceProvider;
     private readonly EpochTimesModel _indexModel;
 
     public EpochTimesTests()
     {
-        var epochService = new EpochService();
+        _serviceProvider = InitiateServiceProvider();
+
+        var options = _serviceProvider.GetService<IOptions<ApplicationSettings>>()!;
+
+        var epochService = _serviceProvider.GetService<IEpochService>()!;
         var currentEpoch = epochService.GetCurrentEpoch();
 
-        _indexModel = new EpochTimesModel(epochService)
+        _indexModel = new EpochTimesModel(options, epochService)
         {
             CurrentEpochTime = currentEpoch,
             CurrentEpochTimeString = currentEpoch.ToHumanReadableDateTime(),
@@ -61,10 +65,10 @@ public class EpochTimesTests
     public void FormSubmissionUpdatesProperties()
     {
         // Arrange
-        var dateTimeInput = DateTime.UtcNow;
+        _indexModel.DateTimeInput = DateTime.UtcNow;
 
         // Act
-        _indexModel.OnPost(dateTimeInput);
+        _indexModel.OnPost();
 
         // Assert
         _indexModel.ConvertedTimestamp.Should().NotBeNull();

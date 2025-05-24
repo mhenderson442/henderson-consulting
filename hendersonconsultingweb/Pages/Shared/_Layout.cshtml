@@ -18,13 +18,16 @@
 </head>
 <body class="d-flex flex-column h-100">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm fixed-top bg-dark border-bottom shadow">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm fixed-top bg-dark border-bottom shadow-bottom">
             <div class="container">
                 <a class="navbar-brand" asp-page="/Index">Henderson Consulting</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-page="EpochTimes">Epoch Times</a>
+                        </li>
+                        <li class="nav-item border-start">
+                            <a class="nav-link text-light" asp-page="IpInfo">Ip Information</a>
                         </li>
                         <li class="nav-item ms-auto">
                             <a class="nav-link text-light" href="https://github.com/mhenderson442" target="_blank" name="GitHub Profile">
@@ -49,7 +52,7 @@
     </main>
 
 
-    <footer class="footer mt-auto py-3 bg-medium fixed-bottom border-top shadow">
+    <footer class="footer mt-auto py-3 bg-medium fixed-bottom border-top shadow-top">
         <div class="container">
             &copy; @DateTime.Now.Year - Henderson Consulting - <a asp-page="/Privacy">Privacy</a>
             <br />

@@ -1,0 +1,71 @@
+﻿@page
+@model IpInfoModel
+@{  
+  ViewData["Title"] = "IP Information";  
+}  
+<h1>Location Information By IP Address</h1>  
+
+<div class="w-50">
+
+    <form method="post">  
+       <input type="hidden" id="g-recaptcha-response" name="RecaptchaResponse">  
+
+       <div class="form-group mb-2">  
+           <label asp-for="IpAddress"></label>  
+           <input asp-for="IpAddress" class="form-control" />  
+           <span asp-validation-for="IpAddress" class="text-danger"></span>  
+       </div>  
+
+       <div class="g-recaptcha" data-sitekey="@Model.GoogleSiteKey"></div>  
+       <button class="btn btn-primary mb-2 mt-2" type="submit">Submit</button>  
+    </form>
+    <div id="g-recaptcha-validation" class="alert-info mt-4 d-none">
+        <p>Please complete the reCAPTCHA before submitting the form.</p>
+    </div>
+</div>
+@if (Model.Location is not null)  
+{  
+   <div class="mt-3">  
+       <h2>Location</h2>  
+
+       <table id="location-table" class="table table-striped w-50">
+           <caption>Location information for the IP @Model.IpAddress</caption>
+            <tbody>  
+                <tr>
+                    <th scope="row">City</th>
+                    <td>@Model.Location.City</td>  
+                </tr>
+            
+                <tr>
+                    <th scope="row">State</th>
+                    <td>@Model.Location.State</td>  
+                </tr>            
+                <tr>
+                    <th scope="row">Zip</th>
+                    <td>@Model.Location.Zip</td>  
+                </tr>            
+                <tr>
+                    <th scope="row">Country</th>
+                    <td>@Model.Location.Country</td>  
+                </tr>            
+                <tr>
+                    <th scope="row">Country</th>
+                    <td>@Model.Location.Country</td>  
+                </tr>
+                <tr>
+                    <th>Longitude</th>
+                    <td>@Model.Location.Longitude</td>
+                </tr>            
+                <tr>
+                    <th>Latitude</th>
+                    <td>@Model.Location.Latitude</td>
+                </tr>            
+            </tbody>
+       </table> 
+   </div>  
+}  
+
+@section Scripts {  
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="~/js/recaptcha-validation.js" async defer></script>
+}

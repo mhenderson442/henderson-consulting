@@ -1,19 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using HendersonConsulting.Web.Extensions;
+﻿namespace HendersonConsulting.Web.Test.Services;
 
-namespace HendersonConsulting.Web.Test.Services;
-
-public class EpochServiceTests
+public class EpochServiceTests : TestBase
 {
     private readonly ServiceProvider _serviceProvider;
 
-    public EpochServiceTests()
-    {
-        var serviceCollection = new ServiceCollection();
-        serviceCollection.AddCustomServices();
-
-        _serviceProvider = serviceCollection.BuildServiceProvider();
-    }
+    public EpochServiceTests() => _serviceProvider = InitiateServiceProvider();
 
     [Fact(DisplayName = "EpochService should be registered")]
     public void EpochService_IsRegistered()

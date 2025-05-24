@@ -3,7 +3,7 @@
 public class EpochService : IEpochService
 {
     /// <inheritdoc />
-    public long ConvertToUnixTimeMilliseconds(DateTime dateTime) => dateTime.ToUnixTimeMillisecondsAtMidnight();
+    public long ConvertToUnixTimeMilliseconds(DateTime dateTime) => ((DateTimeOffset)dateTime).ToUnixTimeMilliseconds();
 
     /// <inheritdoc />
     public long GetCurrentEpoch() => DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();

@@ -3,16 +3,23 @@ namespace HendersonConsulting.Web.Pages;
 public class EpochTimesModel : PageModel
 {
     private readonly IEpochService _epochService;
+    private readonly ApplicationSettings _appSettings;
 
-    public EpochTimesModel(IEpochService epochService)
+    public EpochTimesModel(IOptions<ApplicationSettings> appSettings, IEpochService epochService)
     {
         _epochService = epochService ?? throw new ArgumentNullException(nameof(epochService));
+        _appSettings = appSettings.Value;
 
         var currentEpoch = _epochService.GetCurrentEpoch();
 
         CurrentEpochTime = currentEpoch;
         CurrentEpochTimeString = currentEpoch.ToHumanReadableDateTime();
     }
+
+    /// <summary>
+    /// Gets the Google Site Key.
+    /// </summary>
+    public string GoogleSiteKey => _appSettings.GoogleSiteKey;
 
     /// <summary>
     /// Gets or sets the current Unix timestamp.
@@ -32,6 +39,8 @@ public class EpochTimesModel : PageModel
     /// <summary>
     /// Gets or sets the date and time input from the form.
     /// </summary>
+    [BindProperty]
+    [Required(ErrorMessage = "DateTime input is required.")]
     public DateTime? DateTimeInput { get; set; }
 
     /// <summary>
@@ -59,11 +68,16 @@ public class EpochTimesModel : PageModel
     /// <summary>
     /// Handles the POST request for the form submission.
     /// </summary>
-    /// <param name="dateTimeInput"></param>
-    public void OnPost(DateTime dateTimeInput)
+    public void OnPost()
     {
+        if (!ModelState.IsValid)
+        {
+            return;
+        }
+
+        var dateTimeInput = DateTimeInput?.ToUniversalTime() ?? DateTime.UtcNow;
+
         var convertedEpochTime = _epochService.ConvertToUnixTimeMilliseconds(dateTimeInput);
         ConvertedTimestamp = convertedEpochTime;
-        DateTimeInput = dateTimeInput;
     }
 }

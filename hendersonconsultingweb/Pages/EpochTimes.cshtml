@@ -1,28 +1,30 @@
 ﻿@page
-@using HendersonConsulting.Web.Pages
 @model EpochTimesModel
 @{
     ViewData["Title"] = "Epoch Times";
 }
 
-
-
 <section>
-    <h2 class="mb-5">Epoch Times</h2>
+    <h1 class="mb-5">Epoch Times</h1>
     <p> Current Unix Timestamp: @Model.CurrentEpochTime </p>
     <p> Current Date and Time: @Model.CurrentEpochTimeString </p>
 </section>
 <section class="mt-5">
     <h2 class="mb-5">Convert Date To Timestamp</h2>
-    <form method="post" class="d-flex align-items-center">
+    <form method="post">
+        <input type="hidden" id="g-recaptcha-response" name="RecaptchaResponse">
 
-        <div class="form-group mx-sm-3 mb-2 w-25">
+        <div class="form-group mb-4 w-25">
             <label for="dateTimeInput" class="sr-only">Enter Date and Time:</label>
-            <input class="form-control" type="datetime-local" id="dateTimeInput" name="dateTimeInput" required />
+            <input class="form-control" type="datetime-local" id="dateTimeInput" name="dateTimeInput" />
         </div>
 
-        <button type="submit" class="btn btn-primary mb-2">Convert</button>
+        <div class="g-recaptcha" data-sitekey="@Model.GoogleSiteKey"></div>
+        <button type="submit" class="btn btn-primary mb-2 mt-4">Convert</button>
         
+        <div id="g-recaptcha-validation" class="alert-info w-50 mt-4 d-none">
+            <p>Please complete the reCAPTCHA before submitting the form.</p>
+        </div>
     </form>
     @if (Model.ConvertedTimestamp is not null)
     {
@@ -46,4 +48,9 @@
     <meta name="description" content="Convert epoch time and from Unix timestamps" />
     <meta name="keywords" content="Epoch, Times, Henderson, Consulting" />
     <meta name="author" content="Henderson Consulting" />
+}
+
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="~/js/recaptcha-validation.js" async defer></script>
 }
