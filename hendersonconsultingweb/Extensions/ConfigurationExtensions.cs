@@ -1,4 +1,6 @@
-﻿namespace HendersonConsulting.Web.Extensions;
+﻿using System.Net;
+
+namespace HendersonConsulting.Web.Extensions;
 
 /// <summary>
 /// Extension methods for registering configurationManager in the application.
@@ -14,6 +16,18 @@ public static class ConfigurationExtensions
     public static ConfigurationManager RegisterAzureKeyVault(this ConfigurationManager configurationManager)
     {
         var vaultUri = InitializeVaultUri(configurationManager);
+
+        try
+        {
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+
+
         var credential = new DefaultAzureCredential();
 
         configurationManager.AddAzureKeyVault(vaultUri, credential);
@@ -38,5 +52,15 @@ public static class ConfigurationExtensions
         }
 
         return new Uri(keyVaultUrl);
+    }
+
+    private static ClientSecretCredential GetClientSecretCredential()
+    {
+        var credential = new ClientSecretCredential(
+            Environment.GetEnvironmentVariable("AZURE_TENANT_ID"),
+            Environment.GetEnvironmentVariable("AZURE_CLIENT_ID"),
+            Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET"));
+
+        return credential;
     }
 }

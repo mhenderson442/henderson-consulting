@@ -7,7 +7,6 @@ builder.Configuration.RegisterAzureKeyVault();
 
 builder.Services.AddRazorPages();
 builder.Services.RegisterScopedServices();
-builder.Services.RegisterSingletonServices();
 builder.Services.RegisterApplicationSettings(builder.Configuration);
 builder.Services.RegisterHttpClients(builder.Configuration);
 

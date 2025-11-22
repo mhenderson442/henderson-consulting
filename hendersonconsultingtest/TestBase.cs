@@ -24,7 +24,6 @@ public class TestBase
         var serviceCollection = new ServiceCollection();
 
         serviceCollection.RegisterScopedServices();
-        serviceCollection.RegisterSingletonServices();
 
         var configurationManager = InitiateConfigurationManager();
         serviceCollection.AddSingleton<IConfiguration>(configurationManager);

@@ -11,7 +11,6 @@ public class ServiceExtensionsTests : TestBase
 
         // Act
         ServiceExtensions.RegisterScopedServices(builder.Services);
-        ServiceExtensions.RegisterSingletonServices(builder.Services);
         ServiceExtensions.RegisterHttpClients(builder.Services, builder.Configuration);
         ServiceExtensions.RegisterApplicationSettings(builder.Services, builder.Configuration);
 

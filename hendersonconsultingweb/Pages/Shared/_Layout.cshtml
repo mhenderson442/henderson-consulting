@@ -1,6 +1,4 @@
-﻿@inject HendersonConsulting.Web.Services.IBuildInfoService BuildInfoService
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -56,7 +54,7 @@
         <div class="container">
             &copy; @DateTime.Now.Year - Henderson Consulting - <a asp-page="/Privacy">Privacy</a>
             <br />
-            Version: @BuildInfoService.GetBuildNumber()
+            Version <app-version></app-version>
         </div>
     </footer>
 

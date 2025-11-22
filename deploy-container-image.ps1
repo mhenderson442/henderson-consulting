@@ -5,4 +5,4 @@ dotnet publish --os linux  /t:PublishContainer -c Release
 
 dotnet publish -c Release -p:PublishProfile=DefaultContainer
 
-docker pull hendersonconsultregistry.azurecr.io/hendersonconsultingweb:1.1.6
+docker pull hendersonconsultregistry.azurecr.io/hendersonconsultingweb:1.1.9

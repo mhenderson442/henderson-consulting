@@ -19,18 +19,6 @@ public static class ServiceExtensions
     }
 
     /// <summary>
-    /// Registers all the singleton services in the application.
-    /// </summary>
-    /// <param name="services"><see cref="IServiceCollection"/> services</param>
-    /// <returns><see cref="IServiceCollection"/></returns>
-    public static IServiceCollection RegisterSingletonServices(this IServiceCollection services)
-    {
-        services.AddSingleton<IBuildInfoService, BuildInfoService>();
-
-        return services;
-    }
-
-    /// <summary>
     /// Registers all the configuration settings in the application.
     /// </summary>
     /// <param name="services"><see cref="IServiceCollection"/></param>
